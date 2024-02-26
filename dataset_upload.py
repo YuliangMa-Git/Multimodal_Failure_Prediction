@@ -104,13 +104,3 @@ class CustomDataset(Dataset):
 
             print("All data have been loaded! Total dataset size: {:d}".format(len(self.samples)))
             # print(self.samples[1])
-
-
-# if __name__ == '__main__':
-#     image_path = 'dataset_real_blur/dataset_test/faulty'
-#     mask_path = 'dataset_real_blur/dataset_test/red_mask'
-#     pick_path = 'dataset_real_blur/dataset_test/pick_dot'
-#     place_path = 'dataset_real_blur/dataset_test/place_dot'
-#     csv_path = 'dataset_real_blur/dataset_test/failure_label.csv'
-#
-#     dataset = CustomDataset(image_path, mask_path, pick_path, place_path, csv_path, 'test')
