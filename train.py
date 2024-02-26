@@ -30,8 +30,7 @@ def main(args):
         dataset=train_set, batch_size=args.train_batch_size, shuffle=True, num_workers=2)
     test_loader = DataLoader(
         dataset=test_set, batch_size=args.test_batch_size, shuffle=False, num_workers=2)
-    fpnn = FPNN_wo_mask().to(device)
-    # print(device)
+    fpnn = FPNN().to(device)
     parameters = filter(lambda p: p.requires_grad, fpnn.parameters())
     optimizer = torch.optim.Adam(parameters, lr=args.learning_rate,
                                  weight_decay=args.weight_decay)
@@ -51,11 +50,10 @@ def main(args):
             mask = mask.to(device)
             pick_dot = pick_dot.to(device)
             place_dot = place_dot.to(device)
-            # label = label.squeeze()
             label = label.to(device)
-            # pred = fpnn(image, mask, pick_dot, place_dot)
+            pred = fpnn(image, mask, pick_dot, place_dot)
             # pred = fpnn(image, mask)
-            pred = fpnn(image, pick_dot, place_dot)
+            # pred = fpnn(image, pick_dot, place_dot)
             # pred = fpnn(image)
             loss = loss_fn(pred, label)
 
@@ -77,7 +75,7 @@ def main(args):
 
         # save the best model
         if ap < best_ap:
-            PATH = './CNN_model_woMHA.pth'
+            PATH = './CNN_model.pth'
             torch.save(fpnn.state_dict(), PATH)
             print('model is improved and saved')
             best_ap = copy.deepcopy(ap)
@@ -98,11 +96,9 @@ def main(args):
     plt.xlim(1, args.epochs)
     plt.grid(True)
     plt.savefig("learning_curve_CNN.png")
-    # plt.savefig("learning_curve_CNN_wopp.png")
     plt.close(fig)
 
     print("Finished training.")
-    print("The best test average precision: {:.4f}".format(best_ap))
 
 
 if __name__ == "__main__":
