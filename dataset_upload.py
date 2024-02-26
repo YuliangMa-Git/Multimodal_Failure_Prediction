@@ -88,7 +88,7 @@ class CustomDataset(Dataset):
                 image, mask, pick_dot, place_dot, label = self.read_datapoint(datapoint)
 
                 if self.dataset_type == 'train':
-                    if max(label) == 0:
+                    if label == 0:
                         self.samples.append([image, mask, pick_dot, place_dot, label])
 
                     else:
