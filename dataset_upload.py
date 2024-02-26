@@ -97,12 +97,7 @@ class CustomDataset(Dataset):
                         mask_flipped = transforms.functional.hflip(mask)
                         pick_dot_flipped = transforms.functional.hflip(pick_dot)
                         place_dot_flipped = transforms.functional.hflip(place_dot)
-                        # image_vflipped = transforms.functional.vflip(image)
-                        # mask_vflipped = transforms.functional.vflip(mask)
-                        # pick_dot_vflipped = transforms.functional.vflip(pick_dot)
-                        # place_dot_vflipped = transforms.functional.vflip(place_dot)
                         self.samples.append([image_flipped, mask_flipped, pick_dot_flipped, place_dot_flipped, label])
-                        # self.samples.append([image_vflipped, mask_vflipped, pick_dot_vflipped, place_dot_vflipped, label])
 
                 else:
                     self.samples.append([image, mask, pick_dot, place_dot, label])
