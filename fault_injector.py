@@ -54,21 +54,6 @@ def apply_image_blur(image, kernel_size):
 
     return blurred_image
 
-def apply_image_brightness_shift(image, beta):
-    brightness_shifted_image = cv2.convertScaleAbs(image, alpha=1, beta=beta)
-    return brightness_shifted_image
-
-def apply_motion_blur(image, kernel_size):
-    # Define a motion blur kernel
-    kernel = np.zeros((kernel_size, kernel_size))
-    kernel[int((kernel_size-1)/2), :] = np.ones(kernel_size)
-    kernel /= kernel_size
-
-    # Apply the motion blur
-    motion_blurred_image = cv2.filter2D(image, -1, kernel)
-
-    return motion_blurred_image
-
 # # # CALLBACK # # #
 def image_callback_gaussian_noise(msg, std_dev_random):
     bridge = CvBridge()
@@ -102,38 +87,9 @@ def callback_image_blur(msg, kernel):
     # Publish the modified image
     pub.publish(modified_msg)
 
-def callback_image_brightness_shift(msg, beta):
-    bridge = CvBridge()
-    cv_image = bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8')
-    beta_value = beta
-    faulty_image = apply_image_brightness_shift(cv_image, beta_value)
-    
-    # Convert the modified image back to sensor_msgs/Image
-    modified_msg = bridge.cv2_to_imgmsg(faulty_image, encoding='bgr8')
-    modified_msg.header = msg.header
-
-    pub = rospy.Publisher('/camera/color/image_faulty', Image, queue_size=10)
-    
-    # Publish the modified image
-    pub.publish(modified_msg)
-
-def callback_image_motion_blur(msg, kernel):
-    bridge = CvBridge()
-    cv_image = bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8')
-    kernel_size = kernel
-    faulty_image = apply_motion_blur(cv_image, kernel_size)
-    
-    # Convert the modified image back to sensor_msgs/Image
-    modified_msg = bridge.cv2_to_imgmsg(faulty_image, encoding='bgr8')
-    modified_msg.header = msg.header
-
-    pub = rospy.Publisher('/camera/color/image_faulty', Image, queue_size=10)
-    # Publish the modified image
-    pub.publish(modified_msg)
-
 def image_fault_injector_node():
     rospy.init_node('image_fault_injector')
-    with open("/home/USADR/ac139860/image_FI/image_faults.yaml", 'r') as stream:
+    with open(".../image_faults.yaml", 'r') as stream:
         fault_config = yaml.safe_load(stream)
     fault_type = fault_config["Fault_types"]
     fault_index = randint(0, len(fault_type) - 1)
@@ -156,19 +112,6 @@ def image_fault_injector_node():
         rospy.logwarn('kernel_size is %d', kernel_size)
         rospy.Subscriber('/camera/color/image_raw', Image, lambda data: callback_image_blur(data, kernel_size))
         rospy.spin()
-
-    elif selected_fault_type =='Brightness_shift':
-        beta = randint(1, 1)
-        rospy.logwarn('beta is %d', beta)
-        rospy.Subscriber('/camera/color/image_raw', Image, lambda data: callback_image_brightness_shift(data, beta))
-        rospy.spin()
-
-    elif selected_fault_type =='Motion_blur':
-        kernel_size = randint(120, 120)
-        rospy.logwarn('kernel_size is %d', kernel_size)
-        rospy.Subscriber('/camera/color/image_raw', Image, lambda data: callback_image_motion_blur(data, kernel_size))
-        rospy.spin()
-
 
 if __name__ == '__main__':
     image_fault_injector_node()
