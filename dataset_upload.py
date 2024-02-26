@@ -9,7 +9,6 @@ from PIL import Image
 from torchvision.transforms import Resize
 
 
-# Custom dataset class
 class CustomDataset(Dataset):
     def __init__(self, image_path, mask_path, pick_path, place_path, csv_path, dataset_type):
         self.samples = []
@@ -42,7 +41,6 @@ class CustomDataset(Dataset):
 
         place_dot_transform = transforms.Compose([transforms.ToTensor()])
         place_dot = place_dot_transform(place_dot)
-        # print(mask.shape)
 
         return (image, mask, pick_dot, place_dot, label)
 
@@ -80,7 +78,6 @@ class CustomDataset(Dataset):
         label = datapoint['labels'][1:-1]
         label = map_int(label)
         label = torch.as_tensor(label, dtype=torch.float32)
-        # print(label)
 
         return (image, mask, pick_dot, place_dot, label)
 
