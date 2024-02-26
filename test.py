@@ -4,7 +4,7 @@ import argparse
 from torch.utils.data import DataLoader
 from network import FPNN, FPNN_wo_pp, FPNN_imgonly, FPNN_wo_mask
 from dataset_upload import CustomDataset
-from utils import model_evaluation, density_estimation, get_F1_measure
+from utils import model_evaluation, get_F1_measure
 
 
 def test_all(args):
@@ -15,16 +15,10 @@ def test_all(args):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print(device)
 
-    fpnn = FPNN_wo_mask().to(device)
-    PATH = './CNN_model_woMHA.pth'
-    time_list = []
+    fpnn = FPNN().to(device)
+    PATH = './CNN_model.pth'
     fpnn.load_state_dict(torch.load(PATH))
     ap = model_evaluation(test_loader, fpnn, device)
-        # time_list.append(ap)
-    density_estimation(test_loader, fpnn, device, threshold=0.5)
-    print("Average precision on the test set: {:.4f}".format(ap))
-    #     print("Average infer_time on the test set: {:.4f}".format(ap))
-    # print(sum(time_list)/len(time_list))
     get_F1_measure(test_loader, fpnn, device, 0.5)
 
 
