@@ -1,9 +1,6 @@
 Fault_types:
-  # - Gaussian_noise
+  - Gaussian_noise
   - Image_blur
-  # - Color_shift # #not good
-  # - Image_distortion
-  # - Image_occlusion
 
 
 
