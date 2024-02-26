@@ -5,7 +5,7 @@
 ## Description of the code
 
 ## Dataset
-[\[dataset\]](https://uofi.box.com/s/n1qhun9u7lwgtgeyb6hd0tzxpbyxgpl7)
+[\[dataset\]](https://www.kaggle.com/datasets/yuliangma/proactive-failure-prediction)
 
 ## Citation
 
