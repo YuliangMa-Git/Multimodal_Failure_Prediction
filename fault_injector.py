@@ -58,8 +58,6 @@ def apply_image_blur(image, kernel_size):
 def image_callback_gaussian_noise(msg, std_dev_random):
     bridge = CvBridge()
     cv_image = bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8')
-    # std_dev = std_dev_random
-    # Example: Gaussian noise
     faulty_image = apply_gaussian_noise(cv_image, mean=0, std_dev = std_dev_random)
     
     # Convert the modified image back to sensor_msgs/Image
