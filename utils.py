@@ -2,8 +2,7 @@ import torch
 import numpy as np
 import matplotlib.pyplot as plt
 from torch import nn
-from sklearn.neighbors import KernelDensity
-from sklearn.metrics import average_precision_score, confusion_matrix
+from sklearn.metrics import confusion_matrix
 import seaborn as sns
 
 
