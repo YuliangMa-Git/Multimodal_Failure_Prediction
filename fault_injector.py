@@ -99,14 +99,14 @@ def image_fault_injector_node():
         
 # # # CHOOSE A FAULT # # # 
     if selected_fault_type == 'Gaussian_noise':
-        std_dev_random = uniform(1.5, 1.5)
+        std_dev_random = uniform(1.5, 3.0)
         std_dev_random = round(std_dev_random,1)
         rospy.logwarn_once('std_dev is %f', std_dev_random)
         rospy.Subscriber('/camera/color/image_raw', Image, lambda data: image_callback_gaussian_noise(data, std_dev_random))
         rospy.spin()
 
     elif selected_fault_type == 'Image_blur':
-        kernel_size = randint(50, 50)
+        kernel_size = randint(50, 70)
         rospy.logwarn('kernel_size is %d', kernel_size)
         rospy.Subscriber('/camera/color/image_raw', Image, lambda data: callback_image_blur(data, kernel_size))
         rospy.spin()
