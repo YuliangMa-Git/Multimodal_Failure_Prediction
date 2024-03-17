@@ -1,5 +1,5 @@
-# Proactive Failure Detection
-
+# Multimodal Failure Prediction for Vision-based Manipulation Tasks with Camera Faults
+Yuliang Ma, Jingyi Liu, Ilshat Mamaev, and Andrey Morozov
 ## Abstract
 
 ## Description of the code
