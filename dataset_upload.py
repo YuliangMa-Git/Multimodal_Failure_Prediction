@@ -49,7 +49,6 @@ class CustomDataset(Dataset):
 
         img_name = os.path.join(self.image_path, datapoint['image_name'])
         image = cv2.imread(img_name)
-        # image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         image = Image.fromarray(image)
         image_resize_transform = Resize(self.target_size)
         image = image_resize_transform(image)
