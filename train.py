@@ -105,13 +105,13 @@ if __name__ == "__main__":
 
     # dataset parameters
     parser.add_argument("--train_image_path", type=str, default='dataset_combined/faulty')
-    parser.add_argument("--train_mask_path", type=str, default='dataset_combined/red_mask')
+    parser.add_argument("--train_mask_path", type=str, default='dataset_combined/mask')
     parser.add_argument("--train_pick_dot_path", type=str, default='dataset_combined/pick_dot')
     parser.add_argument("--train_place_dot_path", type=str, default='dataset_combined/place_dot')
     parser.add_argument("--train_csv_path", type=str, default='dataset_combined/failure_label.csv')
 
     parser.add_argument("--test_image_path", type=str, default='dataset_combined_test/faulty')
-    parser.add_argument("--test_mask_path", type=str, default='dataset_combined_test/red_mask')
+    parser.add_argument("--test_mask_path", type=str, default='dataset_combined_test/mask')
     parser.add_argument("--test_pick_dot_path", type=str, default='dataset_combined_test/pick_dot')
     parser.add_argument("--test_place_dot_path", type=str, default='dataset_combined_test/place_dot')
     parser.add_argument("--test_csv_path", type=str, default='dataset_combined_test/failure_label.csv')
@@ -119,7 +119,7 @@ if __name__ == "__main__":
     # training parameters
     parser.add_argument("--seed", type=int, default=230)
     parser.add_argument("--epochs", type=int, default=50)
-    parser.add_argument("--train_batch_size", type=int, default=32)
+    parser.add_argument("--train_batch_size", type=int, default=16)
     parser.add_argument("--test_batch_size", type=int, default=64)
     parser.add_argument("--learning_rate", type=float, default=0.00005)
     parser.add_argument("--weight_decay", type=float, default=0.00015)
