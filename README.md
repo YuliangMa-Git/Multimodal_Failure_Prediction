@@ -3,7 +3,7 @@ Yuliang Ma*, Jingyi Liu, Ilshat Mamaev, and Andrey Morozov
 
 {yuliang.ma@ias.uni-stuttgart.de}
 
-<img src="/source/real world.png" height="640" />
+<img src="/source/real world.png" height="320" />
 <img src="/source/fault demo.png" height="160" />
 
 ## Abstract
