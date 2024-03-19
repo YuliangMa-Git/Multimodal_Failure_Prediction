@@ -27,7 +27,7 @@ if __name__ == "__main__":
 
     parser.add_argument("--test_batch_size", type=int, default=64)
     parser.add_argument("--test_image_path", type=str, default='dataset_combined_test/faulty')
-    parser.add_argument("--test_mask_path", type=str, default='dataset_combined_test/red_mask')
+    parser.add_argument("--test_mask_path", type=str, default='dataset_combined_test/mask')
     parser.add_argument("--test_pick_dot_path", type=str, default='dataset_combined_test/pick_dot')
     parser.add_argument("--test_place_dot_path", type=str, default='dataset_combined_test/place_dot')
     parser.add_argument("--test_csv_path", type=str, default='dataset_combined_test/failure_label.csv')
