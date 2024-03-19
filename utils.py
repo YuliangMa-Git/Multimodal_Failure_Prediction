@@ -79,9 +79,6 @@ def get_F1_measure(data_loader, model, device, threshold):
     sns.set(font_scale=12, font="Times New Roman")
     sns.heatmap(cm, annot=True, cmap='Blues', fmt='g',
                 xticklabels=class_labels, yticklabels=class_labels, cbar=False, vmin=0, vmax=350)
-    # plt.xlabel('Predicted', **csfont)
-    # plt.ylabel('Labels', **csfont)
-    # plt.title('Confusion Matrix', **csfont)
     plt.savefig('confusion_matrix_CNN.png')  # Save the plot as a PNG file
     plt.show()
     return
