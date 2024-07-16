@@ -3,7 +3,7 @@ Yuliang Ma*, Jingyi Liu, Ilshat Mamaev, and Andrey Morozov
 
 {yuliang.ma@ias.uni-stuttgart.de}
 
-This work has been accepted for the for publication in the Proceedings of the 2024 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS 2024).
+This work has been accepted for publication in the Proceedings of the 2024 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS 2024).
 
 <img src="/source/real world.png" height="320" />
 <img src="/source/fault demo.png" height="190" />
